@@ -1,0 +1,38 @@
+﻿@model Shop.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm bg-light text-danger" style="opacity:0.85; text-align:right; margin:10px; direction:rtl">
+            <h3 style="text-align:center;">האם אתה בטוח שאתה רוצה למחוק??</h3>
+
+            <p class="text-danger"><strong>שם:  </strong>@Model.Name</p>
+            <p class="text-danger"><strong>תיאור:  </strong>@Model.Desc</p>
+            <p class="text-danger"><strong>מחיר:  </strong>@Model.Price</p>
+            <br />
+            <img style="width:100%" src="@Model.ImgURL" />
+
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="מחיקה" class="btn btn-danger btn-block" />
+            </form>
+            <br />
+            <form asp-action="Index">
+                <input type="submit" value="חזרה לחנות" class="btn btn-success btn-block" />
+            </form>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+
+
+
+

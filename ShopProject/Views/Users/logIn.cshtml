@@ -1,0 +1,53 @@
+﻿@model Shop.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm bg-light" style="opacity:0.85; font-weight:bold; margin:10px;">
+            <h3 style="text-align:center;" class="text-danger">כניסה</h3>
+
+            <form asp-controller="Users" asp-action="LogIn">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label RTL right text-danger">שם</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Passowrd" class="control-label RTL right text-danger">סיסמה</label>
+                    <input asp-for="Passowrd" class="form-control" />
+                    <span asp-validation-for="Passowrd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="היכנס" class="btn btn-success btn-block" />
+                </div>
+            </form>
+            @if (ViewData["Error"] != null)
+            {
+                <br />
+                <div style="color:red; text-align:center" class="RTL">@ViewData["Error"]</div>
+                <br />
+            }
+            <form asp-controller="Users" asp-action="Create" class="mb-3">
+                <input type="submit" value="הרשמה" class="btn btn-info btn-block" />
+            </form>
+
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

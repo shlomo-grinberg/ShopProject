@@ -1,0 +1,62 @@
+﻿@model Shop.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm bg-light" style="opacity:0.85; font-weight:bold; margin:10px;">
+            <h3 style="text-align:center;" class="text-danger">עריכת פרטי משתמש</h3>
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label text-danger RTL right">שם</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailAddress" class="control-label text-danger RTL right">אימייל</label>
+                    <input asp-for="EmailAddress" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Passowrd" class="control-label text-danger RTL right">סיסמה</label>
+                    <input asp-for="Passowrd" class="form-control" />
+                    <span asp-validation-for="Passowrd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City" class="control-label text-danger RTL right">עיר</label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Street" class="control-label text-danger RTL right">רחוב</label>
+                    <input asp-for="Street" class="form-control" />
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="שמור" class="btn btn-success btn-block" />
+                </div>
+            </form>
+            @if (ViewData["Error"] != null)
+            {
+                <br />
+                <div style="color:red; text-align:center" class="text-danger RTL">@ViewData["Error"]</div>
+                <br />
+            }
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

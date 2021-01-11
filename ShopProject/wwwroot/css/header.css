@@ -1,0 +1,23 @@
+﻿
+
+
+input {
+    direction: rtl;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.opacity{
+    opacity:0.8;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

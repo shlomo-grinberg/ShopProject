@@ -1,0 +1,56 @@
+﻿@model Shop.Models.ShoppingCart
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container btn-block" style="background-color:none !important">
+    <div class="bg-light opacity p-3 m-5">
+        <br />
+        <div class="row">
+            <div class="col">
+
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col"></div>
+                    <h4 class="col text-dark" style="text-align:right; direction:rtl">
+                        @Model.user.Name
+                    </h4>
+                    <h4 class="col font-weight-bold text-danger" style="text-align:right; direction:rtl">
+                        שם:
+                    </h4>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col"></div>
+                    <h4 class="col text-dark" style="text-align:right; direction:rtl">
+                        @Model.user.City 
+                        @Model.user.Street
+                    </h4>
+                    <h4 class="col font-weight-bold text-danger" style="text-align:right; direction:rtl">
+                        כתובת:
+                    </h4>
+                </div>
+                <br />
+            </div>
+        </div>
+        <hr />
+        <br />
+        <h3 class="text-center text-danger font-weight-bold" style="text-align:right; direction:rtl">
+            קבלה תשלח לאימייל
+            @Model.user.EmailAddress
+            על סך
+            @ViewData["finalPrice"]
+            <i class="fa fa-ils" aria-hidden="true"></i>
+        </h3>
+        <br />
+        <hr />
+        <h1 class="bg-light opacity p-2 m-2 text-center text-danger" style="align-items:center; direction:rtl;">תודה שקנית אצלינו!</h1>
+        <img src="/Img/logo.png" style="width:30%; margin-left:35%; margin-right:35%; align-items:center" />
+        <hr />
+        <br />
+    </div>
+</div>
+
+

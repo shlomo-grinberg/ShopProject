@@ -1,0 +1,56 @@
+﻿@model Shop.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm bg-light text-danger" style="opacity:0.85; font-weight:bold; margin:10px;">
+            <h3 style="text-align:center;">הוסף מוצר חדש</h3>
+
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label ">שם</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Desc" class="control-label ">תיאור המוצר</label>
+                    <textarea asp-for="Desc" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Desc" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label ">מחיר</label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImgURL" class="control-label ">נתיב של התמונה</label>
+                    <input asp-for="ImgURL" class="form-control" />
+                    <span asp-validation-for="ImgURL" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="שמור" class="btn btn-danger btn-block" />
+                </div>
+            </form>
+            <form asp-action="Index" class="mb-3">
+                <input type="submit" value="חזרה לחנות" class="btn btn-success btn-block" />
+            </form>
+
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

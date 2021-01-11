@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<Shop.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if (Context.Session.GetString("userName") != null && Context.Session.GetString("userName").Equals("admin"))
+{
+    <p class="center">
+        <a class="btn btn-light text-danger opacity font-weight-bold m-3 pt-2" style="width:50%; margin-right:25%!important; margin-left:25%!important;" asp-action="Create">הוסף מוצר חדש</a>
+    </p>
+}
+
+<div class="container-md">
+    <div class="row p-3">
+        @foreach (var item in Model)
+        {
+
+            <div class="btn col-lg-3 col-md-3 col-sm-4 p-2 ">
+                <div class="card p-3 bg-light center myCard" style="opacity:0.85; font-weight:bold;">
+                    <a asp-controller="ProductInCarts" asp-action="Create" asp-route-id="@item.Id" style="text-decoration: none !important;">
+
+                        <img class="card-img-top productImg" src="@item.ImgURL" alt="Card image cap">
+                        <div class=" text-danger" style="text-align: center;">
+                            <div class="row" style="flex-wrap: unset !important;">
+                                <div class="col-4">
+                                    <i class="fa fa-ils" aria-hidden="true"></i> @item.Price
+                                </div>
+                                <div class="col-0 text-center">
+                                    |
+                                </div>
+                                <div class="col-8">
+                                    @item.Name
+                                </div>
+                            </div>
+
+                        </div>
+                    </a>
+                    @if (Context.Session.GetString("userName") != null && Context.Session.GetString("userName").Equals("admin"))
+                    {
+                        <div class="row pt-3 pb-0">
+                            <div class="col-6 p-0">
+                                <a class="btn btn-block btn-success rounded-0" style="opacity:0.4;" asp-controller="Products" asp-action="Edit" asp-route-id="@item.Id">עריכה</a>
+                            </div>
+                            <div class="col-6 p-0">
+                                <a class="btn btn-block btn-success rounded-0" style="opacity:0.4;" asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id">מחיקה</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+<script src="~/js/site.js" asp-append-version="true"></script>

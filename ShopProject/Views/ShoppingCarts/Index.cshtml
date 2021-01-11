@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Shop.Models.ShoppingCart>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center p-3 mt-3 bg-light opacity rounded-1 text-danger font-weight-bold">העגלות שלי</h2>
+
+<table class="table table-striped bg-light opacity">
+    <thead>
+        <tr>
+            <th scope="col" class="text-right font-weight-boldt text-danger"></th>
+            <th scope="col" class="text-right font-weight-boldt text-danger"></th>
+            <th scope="col" class="text-right font-weight-boldt text-danger">תאריך יצירת עגלה</th>
+        </tr>
+    </thead>
+    <tbody class="text-danger">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td class="text-right font-weight-bold">
+                <form asp-controller="ShoppingCarts" asp-action="Delete" asp-route-id="@item.Id" class="mb-3">
+                    <input type="submit" value="מחק עגלה" class="btn btn-success btn-block opacity rounded-0" />
+                </form>
+            </td>
+            <td class="text-right font-weight-bold">
+                <form asp-controller="ShoppingCarts" asp-action="Load" asp-route-id="@item.Id" class="mb-3">
+                    <input type="submit" value="טען עגלה" class="btn btn-success btn-block opacity rounded-0" />
+                </form>
+            </td>
+            <td class="text-right font-weight-bold">
+                @item.DateCreate
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+

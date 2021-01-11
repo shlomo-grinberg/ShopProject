@@ -1,0 +1,39 @@
+﻿@model Shop.Models.User
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm bg-light" style="opacity:0.85; text-align:right; margin:10px; direction:rtl">
+            <h3 style="text-align:center;">האם אתה בטוח שאתה רוצה למחוק??</h3>
+            <hr />
+            <p><strong>שם:  </strong>@Model.Name</p>
+            <p><strong>אימייל:  </strong>@Model.EmailAddress</p>
+            <p><strong>סיסמה:  </strong>@Model.Passowrd</p>
+            <p><strong>עיר:  </strong>@Model.City</p>
+            <p><strong>רחוב:  </strong>@Model.Street</p>
+            <br />
+
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="מחיקה" class="btn btn-danger btn-block" />
+            </form>
+            <br />
+            <form asp-action="Index">
+                <input type="submit" value="חזרה לניהול משתמשים" class="btn btn-success btn-block" />
+            </form>
+
+
+
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+
+

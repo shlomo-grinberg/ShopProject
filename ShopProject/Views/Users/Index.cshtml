@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Shop.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center p-3 mt-3 bg-light opacity rounded-1 text-danger font-weight-bold">ניהול משתמשים</h2>
+
+<p>
+    <a class="btn btn-success opacity" asp-action="Create">צור משתמש חדש</a>
+</p>
+
+<table class="table table-striped bg-light opacity">
+    <thead>
+        <tr>
+            <th scope="col" class="text-right font-weight-boldt text-danger">כלי ניהול</th>
+            <th scope="col" class="text-right font-weight-boldt text-danger">רחוב</th>
+            <th scope="col" class="text-right font-weight-boldt text-danger">עיר</th>
+            <th scope="col" class="text-right font-weight-boldt text-danger">סיסמה</th>
+            <th scope="col" class="text-right font-weight-boldt text-danger">אימייל</th>
+            <th scope="col" class="text-right font-weight-boldt text-danger">שם</th>
+        </tr>
+    </thead>
+    <tbody class="text-danger">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-right font-weight-bold">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+                <td class="text-right font-weight-bold">
+                    @item.Street
+                </td>
+                <td class=" text-right font-weight-bold">
+                    @item.City
+                </td>
+                <td class="text-right font-weight-bold">
+                    @item.Passowrd
+                </td>
+                <td class="text-right font-weight-bold">
+                    @item.EmailAddress
+                </td>
+                <td class="text-right font-weight-bold">
+                    @item.Name
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

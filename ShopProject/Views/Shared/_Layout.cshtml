@@ -1,0 +1,149 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ShopProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/header.css" />
+    <link rel="stylesheet" href="~/css/Background.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+</head>
+<body class="shopBackground">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow opacity">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation" style="float:left">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="row navbar-nav flex-grow-1">
+                    <li class="col-5 nav-item">
+                        <form asp-controller="Products" asp-action="Search">
+                            <div class="row">
+                                <div class="col-10 p-1">
+                                    <input asp-controller="Products" asp-action="Search"
+                                           class="btn-block text-danger rounded p-3 bg-light border border-danger border-1 font-weight-bold"
+                                           type="text" placeholder="חיפוש מוצרים..." name="product" />
+                                </div>
+                                <div class="col-2 p-1">
+                                    <button type="submit" class=" h5 btn-block border-0 text-danger p-3 bg-light">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    @if (Context.Session.GetString("userId") == null)
+                    {
+                        <li class="col-4">
+
+                        </li>
+                    }
+                    @if (Context.Session.GetString("userId") != null && Context.Session.GetString("userName") != "admin")
+                    {
+                        <li class="col-1">
+
+                        </li>
+                    }
+                    @if (Context.Session.GetString("userId") != null && Context.Session.GetString("userName").Equals("admin"))
+                    {
+                        <li class="col-1 nav-item">
+                            <a class="nav-link btn-light btn-block p-3 bg-light text-danger text-center opacity font-weight-bold"
+                               style=" padding: 10% 0 0 0 !important;" asp-area=""
+                               asp-controller="users" asp-action="Index">נהל משתמשים</a>
+
+                        </li>
+                    }
+                    <li class="col-1 nav-item">
+                        <a class="nav-link btn-light btn-block p-3 bg-light text-danger text-center opacity font-weight-bold"
+                           asp-area="" asp-controller="Users" asp-action="about">אודות</a>
+
+                    </li>
+                    @if (Context.Session.GetString("userId") != null)
+                    {
+                        <li class="col-1 nav-item">
+                            <a class="nav-link btn-light btn-block p-3 bg-light text-danger text-center opacity font-weight-bold"
+                               style=" padding: 10% 0 0 0 !important;" asp-area=""
+                               asp-controller="users" asp-action="edit" asp-route-id="@Context.Session.GetString("user")">החשבון שלי</a>
+                        </li>
+                        <li class="col-1 nav-item">
+                            <a class="nav-link btn-light btn-block p-3 bg-light text-danger text-center opacity font-weight-bold"
+                               style="padding: 10% 0 0 0 !important;"
+                               asp-area="" asp-controller="ShoppingCarts" asp-action="Index">היסטוריית קניות</a>
+                        </li>
+                        <li class="col-1 nav-item">
+                            <a class="nav-link btn-light btn-block p-3 bg-light text-danger text-center opacity font-weight-bold"
+                               style="padding: 10% 0 0 0 !important;"
+                               asp-area="" asp-controller="ProductInCarts" asp-action="Index">העגלה שלי</a>
+                        </li>
+                    }
+                    @if (Context.Session.GetString("userId") == null)
+                    {
+                        <li class="col-1 nav-item">
+                            <a class="nav-link btn-light btn-block p-3 bg-light text-danger text-center opacity font-weight-bold"
+                               asp-area="" asp-controller="users" asp-action="LogIn">התחבר</a>
+
+                        </li>
+                    }
+                    @if (Context.Session.GetString("userId") != null)
+                    {
+                        <li class="col-1 nav-item">
+                            <a class="nav-link btn-light btn-block p-3 bg-light text-danger text-center opacity font-weight-bold"
+                               asp-area="" asp-controller="users" asp-action="LogOut">התנתק</a>
+
+                        </li>
+                    }
+                    <li class="col-1">
+
+                    </li>
+                </ul>
+            </div>
+
+            <a class="navbar-brand" asp-area="" asp-controller="Products" asp-action="Index" style="float:right">
+                <img style="height:50px;" src="/Img/logo.png" />
+            </a>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        <br /><br /><br />
+    </div>
+
+    <footer class="border-top footer text-muted ">
+        <div class="container" style="text-align:center;">
+            <a asp-area="" asp-controller="products" asp-action="index" class="text-danger">דף הבית</a>  |
+
+            @if (Context.Session.GetString("userId") == null)
+            {
+                <a asp-area="" asp-controller="Users" asp-action="LogIn" class="text-danger">התחבר</a>
+            }
+            @if (Context.Session.GetString("userId") != null)
+            {
+                <a asp-area="" asp-controller="Users" asp-action="LogOut" class="text-danger">התנתק</a>
+                <label> | </label>
+                <a asp-area="" asp-controller="ProductInCarts" asp-action="index" class="text-danger">העגלה שלי</a>
+            }
+
+            |
+            <a asp-area="" asp-controller="Users" asp-action="about" class="text-danger">אודות</a>
+        </div>
+        <div class="bg-light font-weight-bold text-danger opacity btn-block" style="text-align:center;">
+            ©️ 2020 Created By shlomo grinberg & daniel shrem & dani kovner
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

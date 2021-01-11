@@ -1,0 +1,22 @@
+﻿.center {
+    margin: auto;
+}
+
+.RTL{
+    direction:rtl;
+}
+.right {
+    float: right;
+}
+.align-right{
+    text-align:right;
+    direction:rtl;
+}
+.center{
+    text-align:center;
+}
+
+.myCard:hover {
+    opacity: 0.4;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}

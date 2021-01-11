@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Shop.Models.ProductInCart>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-center p-3 mt-3 bg-light opacity rounded-1 text-danger font-weight-bold">העגלה שלי</h2>
+
+<p>
+    <a class="btn btn-light text-danger opacity rounded-0" asp-controller="Products" asp-action="Index">הוסף מוצר נוסף</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            @foreach (var item in Model)
+            {
+                <div class="row mb-4 border bg-light opacity text-danger">
+                    <div class="col-md-5 col-lg-3 col-xl-3 border">
+                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                            <img class="img-fluid w-70"
+                                 src="@item.product.ImgURL" alt="Sample">
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-9 col-xl-9 border">
+                        <table class="table" style="margin: 0;">
+                            <tr>
+                                <td colspan="3" class=" text-danger" style="text-align:right; direction:rtl;">
+                                    @item.product.Desc
+                                </td>
+                                <td class="font-weight-bold  text-danger" style="text-align:right; direction:rtl;">
+                                    @item.product.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class=" text-danger" style="text-align:right; direction:rtl;">
+                                    @item.FinalPrice
+                                    <i class="fa fa-ils" aria-hidden="true"></i>
+                                </td>
+                                <td class="font-weight-bold  text-danger" style="text-align:right; direction:rtl;">
+                                    מחיר
+                                </td>
+                                <td class=" text-danger" style="text-align:right; direction:rtl;">
+                                    @item.Amount
+                                </td>
+                                <td class="font-weight-bold  text-danger" style="text-align:right; direction:rtl;">
+                                    כמות
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <form asp-controller="ProductInCarts" asp-action="Delete" asp-route-id="@item.Id" class="mb-3">
+                                        <input type="submit" value="הסרה" class="btn btn-success btn-block opacity rounded-0" />
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="col-4 opacity">
+            <div class="bg-light opacity p-3">
+                <br />
+                <h1 class="font-weight-bold  text-danger text-center" style=" direction:rtl;">
+                    סה''כ לתשלום
+                </h1>
+                <hr />
+                <hr />
+                <h2 class="text-danger text-center" style=" direction:rtl;">
+                    <script type="text/javascript">
+                       (function () {
+                           var finalPrice = @Model.Sum(p=>p.Amount*p.product.Price)
+                               document.write(finalPrice.toPrecision(3));
+
+                       })();
+                    </script>
+                    <i class="fa fa-ils" aria-hidden="true"></i>
+                </h2>
+                <br />
+                <form asp-controller="ShoppingCarts" asp-action="Details" asp-route-id="@Model.First().ShoppingCartId" class="mb-3">
+                    <input type="submit" value="סיום קנייה" class="btn btn-success btn-block opacity rounded-0" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

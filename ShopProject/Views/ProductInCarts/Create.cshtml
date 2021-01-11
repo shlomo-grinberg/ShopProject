@@ -1,0 +1,89 @@
+﻿@model Shop.Models.ProductInCart
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group" hidden>
+        <input asp-for="ProductId" class="form-control text-danger btn-block rounded-0" onchange="calculate(value)" min="1" hidden/>
+        <span asp-validation-for="ProductId" class="text-danger" hidden></span>
+    </div>
+
+    <div class="container bg-light opacity mt-5">
+        <div class="row">
+            <div class="col-6">
+                <img src="@Html.DisplayFor(model => model.product.ImgURL)" alt="Alternate Text" style="width:80%;" />
+            </div>
+            <div class="col-6">
+                <br /><br />
+                <h1 class="text-center text-danger font-weight-bold">
+                    @Html.DisplayFor(model => model.product.Name)
+                </h1>
+                <hr />
+
+                <h4 class="text-center text-danger">
+                    @Html.DisplayFor(model => model.product.Desc)
+                </h4>
+                <br /><br /><hr />
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2">
+
+                        </div>
+                        <h5 class="col-3 text-danger text-center">
+                            <i class="fa fa-ils" aria-hidden="true"></i> @Html.DisplayFor(model => model.product.Price)
+                        </h5>
+                        <h5 class="col-0 text-danger text-center">
+                            |
+                        </h5>
+                        <h5 class="col-5 text-danger text-center font-weight-bold">
+                            מחיר ליחידה
+                        </h5>
+                    </div>
+                </div>
+                <hr />
+                <div class="container">
+                    <div class="row">
+                        <h5 class="col-4 font-weight-bold text-danger text-center">
+                            <i class="fa fa-ils" aria-hidden="true"></i>
+                            <label id="finalPrice"></label>
+                            <label id="firstPrice">@Model.product.Price</label>
+                        </h5>
+                        <h5 class="col-4 font-weight-bold text-danger text-center">
+                            סה''כ לתשלום
+                        </h5>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <input asp-for="Amount" class="form-control text-danger btn-block rounded-0" onchange="calculate(value)" min="1" />
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <h4 class="col-2 font-weight-bold text-danger text-center">
+                            כמות
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-block btn-success rounded-0 text-white font-weight-bold p-2" style="opacity:0.5;" value="הוסף לעגלה" />
+        <br />
+    </div>
+</form>
+
+
+
+@section Scripts {
+    <script>
+        function calculate(value) {
+            var finalPrice = value * @Model.product.Price;
+            document.getElementById("finalPrice").innerHTML = finalPrice.toPrecision(3)
+            $('#firstPrice').hide();
+        }
+        var value = document.getElementById()
+    </script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
