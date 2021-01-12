@@ -17,22 +17,22 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label">שם</label>
+                    <label asp-for="Name" class="control-label" style="float:right">שם</label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Desc" class="control-label">תיאור המוצר</label>
+                    <label asp-for="Desc" class="control-label" style="float:right">תיאור המוצר</label>
                     <textarea asp-for="Desc" class="form-control" rows="3"></textarea>
                     <span asp-validation-for="Desc" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Price" class="control-label">מחיר</label>
+                    <label asp-for="Price" class="control-label" style="float:right">מחיר</label>
                     <input asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ImgURL" class="control-label">נתיב של התמונה</label>
+                    <label asp-for="ImgURL" class="control-label" style="float:right">נתיב של התמונה</label>
                     <input asp-for="ImgURL" class="form-control" />
                     <span asp-validation-for="ImgURL" class="text-danger"></span>
                 </div>

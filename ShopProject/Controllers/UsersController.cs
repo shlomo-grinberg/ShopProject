@@ -108,6 +108,7 @@ namespace ShopProject.Controllers
         {
             HttpContext.Session.Remove("userId");
             HttpContext.Session.Remove("userName");
+            HttpContext.Session.Remove("MyShoppingCartId");
             return View("../Products/Index", _context.Product);
         }
 
