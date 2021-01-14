@@ -134,6 +134,10 @@ namespace ShopProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,EmailAddress,Passowrd,City,Street")] User user)
         {
+            if (HttpContext.Session.GetString("userId") == null)
+            {
+                return View("../Products/Index", _context.Product);
+            }
             if (id != user.Id)
             {
                 return NotFound();

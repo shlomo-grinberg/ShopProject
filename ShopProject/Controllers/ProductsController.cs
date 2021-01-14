@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shop.Models;
@@ -31,27 +32,14 @@ namespace ShopProject.Controllers
             return View("../Products/Index", await products.ToListAsync());
         }
 
-        // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
 
         // GET: Products/Create
         public IActionResult Create()
         {
+            if (HttpContext.Session.GetString("userName") == null || !HttpContext.Session.GetString("userName").Equals("Admin"))
+            {
+                return View("../Products/Index", _context.Product);
+            }
             return View();
         }
 
@@ -62,6 +50,10 @@ namespace ShopProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Desc,Price,ImgURL")] Product product)
         {
+            if (HttpContext.Session.GetString("userName") == null || !HttpContext.Session.GetString("userName").Equals("Admin"))
+            {
+                return View("../Products/Index", _context.Product);
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(product);
@@ -71,21 +63,6 @@ namespace ShopProject.Controllers
             return View(product);
         }
 
-        // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Product.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return View(product);
-        }
 
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -94,6 +71,11 @@ namespace ShopProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Desc,Price,ImgURL")] Product product)
         {
+            if (HttpContext.Session.GetString("userName") == null || !HttpContext.Session.GetString("userName").Equals("Admin"))
+            {
+                return View("../Products/Index", _context.Product);
+            }
+
             if (id != product.Id)
             {
                 return NotFound();
@@ -125,6 +107,10 @@ namespace ShopProject.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (HttpContext.Session.GetString("userName") == null || !HttpContext.Session.GetString("userName").Equals("Admin"))
+            {
+                return View("../Products/Index", _context.Product);
+            }
             if (id == null)
             {
                 return NotFound();
@@ -145,6 +131,10 @@ namespace ShopProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (HttpContext.Session.GetString("userName") == null || !HttpContext.Session.GetString("userName").Equals("Admin"))
+            {
+                return View("../Products/Index", _context.Product);
+            }
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
