@@ -123,49 +123,6 @@ namespace ShopProject.Controllers
             return View(productInCart);
         }
 
-
-        //// POST: ProductInCarts/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //// more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,Amount,FinalPrice")] ProductInCart productInCart)
-        //{
-        //    if (HttpContext.Session.GetString("userId") == null)
-        //    {
-        //        return View("../users/LogIn");
-        //    }
-
-        //    if (id != productInCart.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(productInCart);
-        //            await _context.SaveChangesAsync();                    
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ProductInCartExists(productInCart.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return View("../Products/Index", _context.Product);
-        //    }
-        //    ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Desc", productInCart.ProductId);
-        //    return View(productInCart);
-        //}
-
-
         // POST: ProductInCarts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
